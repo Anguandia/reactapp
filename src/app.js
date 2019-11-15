@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h2>Welcome to React Router Tutorial</h2>
+          <h2>This is webpack for LMS</h2>
           <nav>
             <ul>
               <li><Link to="/about"> About </Link></li>
