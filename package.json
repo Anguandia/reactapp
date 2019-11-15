@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "npm run dev && babel-node server/app.js",
+    "start": "babel-node prod-server.js",
     "build": "babel-node ./node_modules/webpack/bin/webpack --env.environment=production --config webpack.config.js",
     "dev": "babel-node ./node_modules/webpack/bin/webpack --env.environment=production --config webpack.config.js",
     "devserver": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open --hot --env.environment=development --config webpack.config.js"
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.0.0",
-    "@babel/node": "^7.6.2",
+    "@babel/node": "^7.7.0",
     "babel-eslint": "^10.0.3",
     "babel-node": "0.0.1-security",
     "core-js": "^3.2.1",
