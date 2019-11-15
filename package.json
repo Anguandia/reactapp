@@ -1,9 +1,8 @@
 {
   "scripts": {
-    "start": "babel-node app.js",
     "build": "babel-node ./node_modules/webpack/bin/webpack --env.environment=production --config webpack.config.js",
     "dev": "babel-node ./node_modules/webpack/bin/webpack --env.environment=production --config webpack.config.js",
-    "devserver": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open --hot --env.environment=development --config webpack.config.js"
+    "start": "babel-node ./node_modules/webpack-dev-server/bin/webpack-dev-server --open --hot --env.environment=development --config webpack.config.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
