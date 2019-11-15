@@ -3,18 +3,16 @@
 import React from 'react';
 import SignupForm from './signupform';
 
-const qstring = (ob) => Object.keys(ob).map((key) => `${key}=${ob[key]}`).join('&');
 class SignupPage extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(user) {
+    super(user);
     this.state = {
-      firstname: '',
-      email: '',
-      lastname: '',
-      password: '',
-      username: '',
-      error: '',
+      name: '',
+      salary: '',
+      id: '',
+      age: '',
       message: '',
+      component: '',
     };
   }
 
@@ -24,15 +22,11 @@ class SignupPage extends React.Component {
     });
   }
 
-  setError = (error) => {
-    this.setState({ error });
-  }
-
   handleSubmit = (event) => {
     const {
-      firstname, lastname, email, password, username, error, message,
+      name, id, salary, age,
     } = this.state;
-    fetch('http://localhost:3000/api/v1/users/signup', {
+    fetch('http://dummy.restapiexample.com/api/v1/create', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -40,36 +34,28 @@ class SignupPage extends React.Component {
       },
 
       body: JSON.stringify({
-        firstname, lastname, email, password, username, error, message,
+        name, id, salary, age,
       }),
       mode: 'cors',
     })
       .then((response) => response.json())
       .then((res1) => {
-        this.setError(res1.data ? '' : res1.message);
-        localStorage.setItem('message', res1.message);
-        return res1.data;
-      })
-      .then((res) => {
-        if (res) {
-          res.message = localStorage.getItem('message');
-          console.log('rrr', res);
-          localStorage.setItem('state', res);
-          document.location.href = `/profile?${qstring(res)}`;
-        }
+        const message = res1.name
+          ? `Hi, ${res1.name}, you id is ${res1.id}. to get your profile, click get profile`
+          : res1;
+        this.setState({ message });
+        this.setState({ component: 'profile' });
       });
     event.preventDefault();
   }
 
   render() {
-    const {
-      firstname, lastname, email, error,
-    } = this.state;
-    const employee = {
-      firstname, lastname, email, error,
-    };
+    const props = {};
+    Object.assign(props, this.state, this);
     return (
-      <SignupForm employee={employee} handleChange={this.handleChange} handleSubmit={this.handleSubmit} error={error} />
+      <h3>{props.message}</h3>,
+      // eslint-disable-next-line react/jsx-props-no-spreading
+        <SignupForm {...props} />
     );
   }
 }

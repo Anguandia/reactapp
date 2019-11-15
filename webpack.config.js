@@ -12,8 +12,8 @@ module.exports = (env) => ({
   mode: env.environment,
   devServer: {
     contentBase: distPath,
-    host: process.env.host,
-    port: process.env.port,
+    host: process.env.HOST,
+    port: process.env.PORT,
     historyApiFallback: true,
     overlay:
       env.environment === 'development'
@@ -22,6 +22,7 @@ module.exports = (env) => ({
   },
   entry: [path.join(sourcePath, './index.js')],
   output: {
+    publicPath: '/',
     path: distPath,
     filename: 'js/[name].[hash].js',
   },

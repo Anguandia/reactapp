@@ -1,15 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const props = (prop) => new URLSearchParams(window.location.search).get(prop);
-console.log('ooo', props('employee_name'));
-const SingleUser = () => (
+const Employee = ({
+  name, age, salary, id,
+}) => (
   <div>
     <h2>
-            hi,
+        hi,
       {' '}
-      {props('employee_name')}
+      {name}
     </h2>
+    <ul>
+      <li>
+          your age:
+        {' '}
+        {age}
+      </li>
+      <li>
+          your salary:
+        {' '}
+        {salary}
+      </li>
+      <li>
+          your id:
+        {' '}
+        {id}
+      </li>
+    </ul>
   </div>
 );
 
-export default SingleUser;
+Employee.propTypes = {
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  salary: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+};
+
+export default Employee;

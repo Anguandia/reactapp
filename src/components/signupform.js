@@ -2,49 +2,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SignupForm = ({
-  handleChange, handleSubmit, firstname, lastname, email, password, username, error, message,
+  handleChange, handleSubmit, name, salary, age, id, message,
 }) => (
-  <form onSubmit={handleSubmit}>
-    <label htmlFor="firstname">
-                firstname:
-      <input type="text" name="firstname" firstname={firstname} onChange={handleChange} />
-    </label>
-    <label htmlFor="lastname">
-                lastname:
-      <input type="text" name="lastname" lastname={lastname} onChange={handleChange} />
-    </label>
-    <label htmlFor="email">
-                email:
-      <input type="text" name="email" email={email} onChange={handleChange} />
-    </label>
-    <label htmlFor="password">
-                password:
-      <input type="text" name="password" password={password} onChange={handleChange} />
-    </label>
-    <label htmlFor="username">
-                username:
-      <input type="text" name="username" username={username} onChange={handleChange} />
-    </label>
-    <p>
-      {error}
-    </p>
-    <p>
+  <div>
+    <h2>
       {message}
-    </p>
-    <input type="submit" value="Submit" />
-
-  </form>
+    </h2>
+    <br />
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="name">
+          name:
+        <input type="text" name="name" defaultValue={name} onChange={handleChange} />
+      </label>
+      <br />
+      <label htmlFor="salary">
+          salary:
+        <input type="text" name="salary" defaultValue={salary} onChange={handleChange} />
+      </label>
+      <br />
+      <label htmlFor="age">
+          age:
+        <input type="text" name="age" defaultValue={age} onChange={handleChange} />
+      </label>
+      <br />
+      <label htmlFor="id">
+          id:
+        <input type="text" name="id" defaultValue={id} onChange={handleChange} />
+      </label>
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
 );
 
 SignupForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  firstname: PropTypes.string.isRequired,
-  lastname: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  salary: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
 };
 
