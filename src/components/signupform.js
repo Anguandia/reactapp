@@ -1,36 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './styles';
 
-const SignupForm = ({
-  handleChange, handleSubmit, name, salary, age, id, message,
-}) => (
-  <div>
-    <h2>
-      {message}
-    </h2>
-    <br />
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">
-          name:
-        <input type="text" name="name" defaultValue={name} onChange={handleChange} />
+const SignupForm = ({ handleChange, handleSubmit, message }) => (
+  <div style={styles.body}>
+    <h3>{message}</h3>
+    <form onSubmit={handleSubmit} style={styles.form}>
+      <label htmlFor="firstname" style={styles.input}>
+        Firstname:
+        <br />
+        <input type="text" name="firstname" onChange={(e) => handleChange(e)} style={styles.input} />
       </label>
       <br />
-      <label htmlFor="salary">
-          salary:
-        <input type="text" name="salary" defaultValue={salary} onChange={handleChange} />
+      <label htmlFor="lastname" style={styles.input}>
+        Lastname:
+        <br />
+        <input type="text" name="lastname" onChange={(e) => handleChange(e)} style={styles.input} />
       </label>
       <br />
-      <label htmlFor="age">
-          age:
-        <input type="text" name="age" defaultValue={age} onChange={handleChange} />
+      <label htmlFor="username" style={styles.input}>
+        Username:
+        <br />
+        <input type="text" name="username" onChange={(e) => handleChange(e)} style={styles.input} />
       </label>
       <br />
-      <label htmlFor="id">
-          id:
-        <input type="text" name="id" defaultValue={id} onChange={handleChange} />
+      <label htmlFor="email" style={styles.input}>
+        Email:
+        <br />
+        <input type="email" name="email" onChange={(e) => handleChange(e)} style={styles.input} />
       </label>
       <br />
-      <input type="submit" value="Submit" />
+      <label htmlFor="password" style={styles.input}>
+        Password:
+        <br />
+        <input type="password" name="password" onChange={(e) => handleChange(e)} style={styles.input} />
+      </label>
+      <br />
+      <input type="submit" value="Submit" style={styles.submit} />
     </form>
   </div>
 );
@@ -38,10 +44,6 @@ const SignupForm = ({
 SignupForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  salary: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
 };
 

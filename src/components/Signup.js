@@ -7,12 +7,12 @@ class SignupPage extends React.Component {
   constructor(user) {
     super(user);
     this.state = {
-      name: '',
-      salary: '',
-      id: '',
-      age: '',
+      firstname: '',
+      lastname: '',
+      email: '',
+      username: null,
+      password: '',
       message: '',
-      component: '',
     };
   }
 
@@ -23,28 +23,21 @@ class SignupPage extends React.Component {
   }
 
   handleSubmit = (event) => {
-    const {
-      name, id, salary, age,
-    } = this.state;
-    fetch('http://dummy.restapiexample.com/api/v1/create', {
+    fetch('https://codepirates-ah-backend-staging.herokuapp.com/api/v1/users/signup', {
       method: 'post',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
 
-      body: JSON.stringify({
-        name, id, salary, age,
-      }),
+      body: JSON.stringify(this.state),
       mode: 'cors',
     })
       .then((response) => response.json())
       .then((res1) => {
-        const message = res1.name
-          ? `Hi, ${res1.name}, you id is ${res1.id}. to get your profile, click get profile`
-          : res1;
-        this.setState({ message });
-        this.setState({ component: 'profile' });
+        console.log(res1);
+        this.setState({ message: res1.message });
+        this.setState(res1.data);
       });
     event.preventDefault();
   }
@@ -54,7 +47,6 @@ class SignupPage extends React.Component {
     Object.assign(props, this.state, this);
     return (
       <h3>{props.message}</h3>,
-      // eslint-disable-next-line react/jsx-props-no-spreading
         <SignupForm {...props} />
     );
   }

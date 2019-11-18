@@ -12,9 +12,8 @@ module.exports = (env) => ({
   mode: env.environment,
   devServer: {
     contentBase: distPath,
-    host: process.env.HOST,
-    port: process.env.PORT,
     historyApiFallback: true,
+    publicPath: '/',
     overlay:
       env.environment === 'development'
         ? { errors: true, warnings: true }
@@ -35,6 +34,34 @@ module.exports = (env) => ({
           loader: 'babel-loader',
           options: {},
         },
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|ttf|woff2|woff|eot)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          // style-loader
+          { loader: 'style-loader' },
+          // css-loader
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          // sass-loader
+          { loader: 'sass-loader' },
+        ],
       },
     ],
   },
